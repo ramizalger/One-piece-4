@@ -1,10 +1,15 @@
 package info.devexchanges.cardsstack;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,9 +22,11 @@ import static info.devexchanges.cardsstack.CardsAdapter.decodeSampledBitmapFromR
 
 public class TeamActivity extends AppCompatActivity {
 
-   // private List equip = new LinkedList();
+    private List equip = new LinkedList();
     private final String EXTRA_NOM ="";
     private String recup ="";
+    private ImageView img ;
+
 
 
 
@@ -27,20 +34,26 @@ public class TeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
-
-      //  final TextView text = (TextView)findViewById(R.id.text);
-        final ImageView img = (ImageView)findViewById(R.id.imageEquipage) ;
+        setTitle("Mon Equipage");
 
 
-        ArrayList<CardItem> equipage = (ArrayList<CardItem>) getIntent().getSerializableExtra("my list");
+        img=(ImageView) findViewById(R.id.imageView) ;
 
 
-     //   if(equipage.size()!=0)
+        ArrayList<Integer> equipage = (ArrayList<Integer>) getIntent().getSerializableExtra("my list");
+
+      //  ArrayList<String> nom_equipage = (ArrayList<String>)getIntent().getStringArrayListExtra("my list name");
+
+
+        if(equipage.size()!=0)
+            img.setImageResource(equipage.get(0));
+
       //  text.setText(equipage.get(0).getDrawableId());
-            img.setImageBitmap(decodeSampledBitmapFromResource(this.getResources(),equipage.get(0).getDrawableId(),261,155));
 
 
-            //text.setText("Aucun Membre ajouté");
+
+
+           // text.setText("Aucun Membre ajouté");
 
 
 
@@ -51,4 +64,38 @@ public class TeamActivity extends AppCompatActivity {
 
       //  for (int i=0; i<equip.size(); i++);
     }
-}
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

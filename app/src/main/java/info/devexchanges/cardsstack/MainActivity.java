@@ -3,6 +3,9 @@ package info.devexchanges.cardsstack;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,9 +29,12 @@ public class MainActivity extends AppCompatActivity {
     private int currentPosition;
 
 
-    private ArrayList<CardItem> equipage = new ArrayList<>();
+   private ArrayList<Integer> equipage = new ArrayList<>();
+  //   private ArrayList<String> nom_equipage = new ArrayList<>();
     private final List EXTRA_NOM = new LinkedList();
-
+ //   private RecyclerView recyclerView;
+  //  private RecyclerViewAdapter adapt ;
+ //   private String[] myData = {"LUNDI" , "MARDI"};
 
 
     @Override
@@ -36,17 +42,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+      //  nom_equipage.add("AAAAA");
+
+
         cardStack = (SwipeStack) findViewById(R.id.container);
         btnCancel = findViewById(R.id.cancel);
         btnLove = findViewById(R.id.bateau);
         Button myButton = (Button) findViewById(R.id.button);
+
+
+    /*    recyclerView = (RecyclerView)findViewById(R.id.myRecyclerView);
+        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        adapt = new RecyclerViewAdapter(this,R.layout.cellules,myData);
+        recyclerView.setAdapter(adapt);*/
+
+
+
+
+
+
+
+
         myButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-              //  Intent myIntent = new Intent(MainActivity.this, TeamActivity.class);
-               // startActivity(myIntent);
+
                 goToNextActivity();
 
             }
@@ -73,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 currentPosition = position + 1;
                 cardStack.swipeTopViewToLeft();
-               // cardStack.swipeTopViewToRight();
+
             }
 
             @Override
@@ -82,9 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, cardItems.get(currentPosition).getName() + " fait parti de l'équipage ",
                         Toast.LENGTH_SHORT).show();
 
-                equipage.add(cardItems.get(currentPosition));
+               equipage.add(cardItems.get(currentPosition).getDrawableId());
+             //   nom_equipage.add(cardItems.get(currentPosition).getName());
 
-               // goToNextActivity();
+
 
 
                 currentPosition = position + 1;
@@ -129,8 +155,10 @@ public class MainActivity extends AppCompatActivity {
     private void goToNextActivity() {
 
         Intent intent = new Intent(MainActivity.this, TeamActivity.class);
+     //   intent.putExtra("my list name",nom_equipage);
         intent.putExtra("my list", equipage);
-        startActivity(intent);
+       startActivity(intent);
+
 
     }
 
