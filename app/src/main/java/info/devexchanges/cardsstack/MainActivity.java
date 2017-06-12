@@ -1,13 +1,18 @@
 package info.devexchanges.cardsstack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import link.fls.swipestack.SwipeStack;
 
@@ -20,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
     private View btnLove;
     private int currentPosition;
 
+
+    private ArrayList<CardItem> equipage = new ArrayList<>();
+    private final List EXTRA_NOM = new LinkedList();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +38,28 @@ public class MainActivity extends AppCompatActivity {
 
         cardStack = (SwipeStack) findViewById(R.id.container);
         btnCancel = findViewById(R.id.cancel);
-        btnLove = findViewById(R.id.love);
+        btnLove = findViewById(R.id.bateau);
+        Button myButton = (Button) findViewById(R.id.button);
+        myButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+              //  Intent myIntent = new Intent(MainActivity.this, TeamActivity.class);
+               // startActivity(myIntent);
+                goToNextActivity();
+
+            }
+
+        });
+
+
+
+
+
+
+
+
 
         setCardStackAdapter();
         currentPosition = 0;
@@ -36,12 +68,32 @@ public class MainActivity extends AppCompatActivity {
         cardStack.setListener(new SwipeStack.SwipeStackListener() {
             @Override
             public void onViewSwipedToLeft(int position) {
+
+                Toast.makeText(MainActivity.this, cardItems.get(currentPosition).getName() + " va niker sa mère ",
+                        Toast.LENGTH_SHORT).show();
                 currentPosition = position + 1;
+                cardStack.swipeTopViewToLeft();
+               // cardStack.swipeTopViewToRight();
             }
 
             @Override
             public void onViewSwipedToRight(int position) {
+
+                Toast.makeText(MainActivity.this, cardItems.get(currentPosition).getName() + " fait parti de l'équipage ",
+                        Toast.LENGTH_SHORT).show();
+
+                equipage.add(cardItems.get(currentPosition));
+
+               // goToNextActivity();
+
+
                 currentPosition = position + 1;
+
+              //  cardStack.swipeTopViewToLeft();
+
+                cardStack.swipeTopViewToRight();
+
+
             }
 
             @Override
@@ -53,10 +105,9 @@ public class MainActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, cardItems.get(currentPosition).getName() + " va niker sa mère ",
-                        Toast.LENGTH_SHORT).show();
+
                 cardStack.swipeTopViewToLeft();
-                cardStack.swipeTopViewToRight();
+
 
             }
         });
@@ -64,12 +115,31 @@ public class MainActivity extends AppCompatActivity {
         btnLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, cardItems.get(currentPosition).getName() + " fait parti de l'équipage ",
-                        Toast.LENGTH_SHORT).show();
-                cardStack.swipeTopViewToLeft();
+
+                cardStack.swipeTopViewToRight();
             }
         });
     }
+
+
+
+
+
+
+    private void goToNextActivity() {
+
+        Intent intent = new Intent(MainActivity.this, TeamActivity.class);
+        intent.putExtra("my list", equipage);
+        startActivity(intent);
+
+    }
+
+
+
+
+
+
+
 
     private void setCardStackAdapter() {
         cardItems = new ArrayList<>();

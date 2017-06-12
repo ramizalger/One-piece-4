@@ -66,6 +66,8 @@ public class CardsAdapter extends BaseAdapter {
         return convertView;
     }
 
+
+
     private class ViewHolder{
         private ImageView avatar;
         private TextView name;

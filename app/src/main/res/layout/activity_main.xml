@@ -12,13 +12,18 @@
     <link.fls.swipestack.SwipeStack
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="430dp"
+        android:layout_alignParentTop="true"
         app:stack_rotation="0" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/container">
 
         <TextView
             android:id="@+id/empty"
@@ -27,24 +32,43 @@
             android:layout_centerInParent="true" />
 
         <ImageView
-            android:id="@+id/love"
+            android:id="@+id/bateau"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:contentDescription="@null"
+            android:foregroundGravity="left"
+            android:padding="10dp"
+            android:src="@drawable/bateau"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/empty"
+            android:layout_toEndOf="@+id/empty"
+            android:layout_marginLeft="52dp"
+            android:layout_marginStart="52dp" />
+
+        <Button
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/empty"
-            android:contentDescription="@null"
-            android:src="@drawable/love" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_toEndOf="@+id/cancel"
+            android:layout_toRightOf="@+id/cancel"
+            android:text="Button" />
 
         <ImageView
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/empty"
+            android:layout_centerInParent="false"
             android:contentDescription="@null"
-            android:src="@drawable/cancel" />
+            android:src="@drawable/cancel"
+            android:layout_alignTop="@+id/empty"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="67dp"
+            android:layout_marginStart="67dp" />
     </RelativeLayout>
 
 </RelativeLayout>
