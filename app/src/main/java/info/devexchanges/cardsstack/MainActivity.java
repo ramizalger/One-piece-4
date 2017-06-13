@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
 
    private ArrayList<Integer> equipage = new ArrayList<>();
-  //   private ArrayList<String> nom_equipage = new ArrayList<>();
+     private ArrayList<String> nom_equipage = new ArrayList<>();
     private final List EXTRA_NOM = new LinkedList();
- //   private RecyclerView recyclerView;
-  //  private RecyclerViewAdapter adapt ;
- //   private String[] myData = {"LUNDI" , "MARDI"};
+
+
+
 
 
     @Override
@@ -43,24 +43,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-      //  nom_equipage.add("AAAAA");
+
+
 
 
         cardStack = (SwipeStack) findViewById(R.id.container);
         btnCancel = findViewById(R.id.cancel);
         btnLove = findViewById(R.id.bateau);
         Button myButton = (Button) findViewById(R.id.button);
-
-
-    /*    recyclerView = (RecyclerView)findViewById(R.id.myRecyclerView);
-        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        adapt = new RecyclerViewAdapter(this,R.layout.cellules,myData);
-        recyclerView.setAdapter(adapt);*/
-
-
-
 
 
 
@@ -107,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, cardItems.get(currentPosition).getName() + " fait parti de l'équipage ",
                         Toast.LENGTH_SHORT).show();
 
-               equipage.add(cardItems.get(currentPosition).getDrawableId());
-             //   nom_equipage.add(cardItems.get(currentPosition).getName());
+                equipage.add(cardItems.get(currentPosition).getDrawableId());
+                nom_equipage.add(cardItems.get(currentPosition).getName());
 
 
 
@@ -154,10 +144,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToNextActivity() {
 
-        Intent intent = new Intent(MainActivity.this, TeamActivity.class);
-     //   intent.putExtra("my list name",nom_equipage);
-        intent.putExtra("my list", equipage);
-       startActivity(intent);
+        Intent intentt = new Intent(MainActivity.this, TeamActivity.class);
+        intentt.putExtra("my list name",nom_equipage);
+        intentt.putExtra("my list", equipage);
+
+       startActivity(intentt);
 
 
     }
