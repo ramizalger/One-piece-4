@@ -24,14 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private SwipeStack cardStack;
     private CardsAdapter cardsAdapter;
     private ArrayList<CardItem> cardItems;
+
+
     private View btnCancel;
     private View btnLove;
     private int currentPosition;
 
 
-   private ArrayList<Integer> equipage = new ArrayList<>();
+
+     private ArrayList<Integer> equipage = new ArrayList<>();
      private ArrayList<String> nom_equipage = new ArrayList<>();
-    private final List EXTRA_NOM = new LinkedList();
+     private final List EXTRA_NOM = new LinkedList();
 
 
 
@@ -48,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         cardStack = (SwipeStack) findViewById(R.id.container);
+
+
+
+
         btnCancel = findViewById(R.id.cancel);
         btnLove = findViewById(R.id.bateau);
         Button myButton = (Button) findViewById(R.id.button);
@@ -67,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
 
 
 
@@ -97,17 +103,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, cardItems.get(currentPosition).getName() + " fait parti de l'équipage ",
                         Toast.LENGTH_SHORT).show();
 
+
+
+                currentPosition = position + 1;
+
+                cardStack.swipeTopViewToRight();
+
                 equipage.add(cardItems.get(currentPosition).getDrawableId());
                 nom_equipage.add(cardItems.get(currentPosition).getName());
 
 
 
-
-                currentPosition = position + 1;
-
-              //  cardStack.swipeTopViewToLeft();
-
-                cardStack.swipeTopViewToRight();
 
 
             }
@@ -117,6 +123,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
+
+
+
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,6 +205,12 @@ public class MainActivity extends AppCompatActivity {
         cardsAdapter = new CardsAdapter(this, cardItems);
         cardStack.setAdapter(cardsAdapter);
     }
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -3,14 +3,18 @@ package info.devexchanges.cardsstack;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +34,12 @@ public class TeamActivity extends AppCompatActivity {
     private TextView noneMembre;
 
 
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +53,7 @@ public class TeamActivity extends AppCompatActivity {
 
        ArrayList<Integer> equipage = (ArrayList<Integer>) getIntent().getSerializableExtra("my list");
 
-
         ArrayList<String> nom_equipage = getIntent().getStringArrayListExtra("my list name");
-
-
-
-
-
-
-
 
 
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
@@ -60,6 +62,9 @@ public class TeamActivity extends AppCompatActivity {
 
         adapter = new MyAdapter(this,R.layout.cellules,nom_equipage,equipage);
         recyclerView.setAdapter(adapter);
+
+
+
 
 
 
@@ -79,7 +84,6 @@ public class TeamActivity extends AppCompatActivity {
 
 
 
-
     }
 
 
@@ -88,7 +92,20 @@ public class TeamActivity extends AppCompatActivity {
 
 
 
+    /*
+    @Override
+    public void onBackPressed()
+    {
+
+
     }
+    */
+
+
+
+
+
+}
 
 
 
